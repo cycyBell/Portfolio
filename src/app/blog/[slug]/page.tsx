@@ -1,11 +1,15 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
+import { serialize } from 'next-mdx-remote/serialize';
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex"
 import { getPosts } from "@/app/utils/utils";
 import { AvatarGroup, Button, Column, Heading, Row, Text } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
+import 'katex/dist/katex.min.css';
 
 interface BlogParams {
   params: {
@@ -61,12 +65,27 @@ export function generateMetadata({ params: { slug } }: BlogParams) {
   };
 }
 
-export default function Blog({ params }: BlogParams) {
-  let post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === params.slug);
 
+
+export default async function Blog({ params }: BlogParams) {
+  
+  let post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === params.slug);
   if (!post) {
     notFound();
   }
+  /*
+  console.log("Raw MDX Content:", post.content);
+
+  const mdxSource = await serialize(post.content, {
+    mdxOptions : {
+      remarkPlugins : [remarkMath],
+      rehypePlugins : [rehypeKatex],
+    }
+  })
+    */
+
+  
+
 
   const avatars =
     post.metadata.team?.map((person) => ({

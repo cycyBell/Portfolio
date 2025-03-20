@@ -1,6 +1,9 @@
-import mdx from "@next/mdx";
+import createMDX from "@next/mdx";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import remarkGfm from "remark-gfm";
 
-const withMDX = mdx({
+const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {},
 });
