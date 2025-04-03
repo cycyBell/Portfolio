@@ -132,10 +132,11 @@ export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
           display: "flex",
           justifyContent: "center",
         }}
-        action={mailchimp.action}
+        action="https://app.us20.list-manage.com/subscribe/post?u=b10833f76bbd0aac81e69826e&amp;id=92d0b2d56b&amp;f_id=00aa4ae6f0"
         method="post"
         id="mc-embedded-subscribe-form"
         name="mc-embedded-subscribe-form"
+        target="_blank"
       >
         <Flex id="mc_embed_signup_scroll" fillWidth maxWidth={24} gap="8">
           <Input
